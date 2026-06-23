@@ -1,6 +1,17 @@
 import random
 
 
+def finish(num, attempt):
+    if attempt == 1:
+        print("The answer to the ultimate question of life, " 
+f"the universe and everything is {num}.")
+        print("Congratulations! You got it on your first try!")
+    else:
+        print("Congratulations, you've got it!")
+        print(f"You won in {attempt} attempts!")
+    quit()
+
+
 def game(num, attempt):
     print("What's your guess between 1 and 99?")
     inp = input(">> ")
@@ -11,11 +22,13 @@ def game(num, attempt):
         elif val > num:
             print("Too high!")
         else:
-            print("Congratulations, you've got it!")
-            print(f"You won in {attempt} attempts!")
-            quit()
+            finish(num, attempt)
     except ValueError:
-        print("That's not a number.")
+        if inp == 'exit':
+            print("Goodbye!")
+            quit()
+        else:
+            print("That's not a number.")
     attempt += 1
     game(num, attempt)
 
